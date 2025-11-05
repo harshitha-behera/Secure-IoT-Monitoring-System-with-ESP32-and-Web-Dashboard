@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="mb-3">Database Analytics</h5>
+        <div class="display-6" id="totalRecords">—</div>
+        <div class="text-secondary">Total Records</div>
+        <hr>
+        <div><strong id="activeConns">—</strong> Active Connections</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="mb-3">ESP32 Data Stream</h5>
+        <div class="small text-muted">Received:</div>
+        <pre id="lastJson" class="bg-light p-2 rounded" style="min-height:100px">—</pre>
+        <div><span class="badge text-bg-success">AES-256-CBC Encrypted</span></div>
+        <div class="small text-muted mt-2">Encrypted payload:</div>
+        <div id="lastCipher" class="small text-break">—</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="mb-3">User Profile</h5>
+        <div><strong>Username:</strong> <span id="proUser">—</span></div>
+        <div><strong>Role:</strong> <span id="proRole">—</span></div>
+        <div><strong>Sessions:</strong> <span id="proSess">—</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+{% endblock %}

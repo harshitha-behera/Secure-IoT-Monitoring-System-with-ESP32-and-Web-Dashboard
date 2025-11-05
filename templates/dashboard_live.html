@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+	  <div class="card-body">
+		<h6>Real-time Temperature & Humidity</h6>
+		<div class="chart-wrap" style="height:320px;">
+		  <canvas id="liveChart"></canvas>
+		</div>
+  </div>
+</div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <h6>Current</h6>
+        <div class="display-6"><span id="curTemp">--</span> °C</div>
+        <div class=""> <span id="curHum">--</span> % RH</div>
+        <div id="current-badges" class="mt-2 text-muted" style="font-size:.9rem;">
+          Last update: <span id="curTs">--</span>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <h6>Temperature Alarm</h6>
+        <div class="input-group">
+          <input id="threshold" type="number" class="form-control" placeholder="Set threshold (°C)">
+          <button class="btn btn-teal btn-primary" id="btnSet">Set Alarm</button>
+          <button class="btn btn-outline-secondary" id="btnClear">Clear</button>
+        </div>
+        <div id="alarmStatus" class="mt-2 small text-muted">No threshold set.</div>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6>Local Weather</h6>
+        <div class="input-group mb-2">
+          <input id="city" class="form-control" placeholder="City (e.g., Hyderabad)">
+          <button class="btn btn-outline-primary" id="btnWeather">Fetch</button>
+        </div>
+        <div id="weatherCard" class="small text-muted">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h6>Search Past Temperatures</h6>
+        <div class="row g-2 mb-2">
+          <div class="col-4">
+            <select id="filterOp" class="form-select">
+              <option value="above">Above</option>
+              <option value="below">Below</option>
+            </select>
+          </div>
+          <div class="col-4"><input id="filterVal" class="form-control" value="15" type="number"></div>
+          <div class="col-4"><button class="btn btn-primary w-100" id="btnSearch">Search</button></div>
+        </div>
+        <ul id="searchResults" class="small"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/live.js') }}"></script>
+{% endblock %}
